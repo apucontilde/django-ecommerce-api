@@ -4,14 +4,23 @@ from .models import Product
 
 # We create filters for each field we want to be able to filter on
 class ProductFilter(filters.FilterSet):
-    title = filters.CharFilter(lookup_expr='icontains')
-    genre = filters.CharFilter(lookup_expr='icontains')
-    year = filters.NumberFilter()
-    year__gt = filters.NumberFilter(field_name='year', lookup_expr='gt')
-    year__lt = filters.NumberFilter(field_name='year', lookup_expr='lt')
-    creator__username = filters.CharFilter(lookup_expr='icontains')
+    short_name = filters.CharFilter(lookup_expr="icontains")
+    long_name = filters.CharFilter(lookup_expr="icontains")
+    price_gt = filters.NumberFilter(field_name="price", lookup_expr="gte")
+    price_lte = filters.NumberFilter(field_name="price", lookup_expr="lte")
+    stock_gt = filters.NumberFilter(field_name="stock", lookup_expr="gte")
+    stock_lte = filters.NumberFilter(field_name="stock", lookup_expr="lte")
+    category = filters.CharFilter(field_name="categories__name", lookup_expr="iexact")
 
     class Meta:
         model = Product
-        fields = ['title', 'genre', 'year', 'year__gt', 'year__lt', 'creator__username']
-
+        fields = (
+            "short_name",
+            "long_name",
+            "sku",
+            "price_gt",
+            "price_lte",
+            "stock_gt",
+            "stock_lte",
+            "category",
+        )
