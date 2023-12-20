@@ -1,19 +1,43 @@
 from rest_framework import serializers
-from .models import Product
+from .models import Product, ProductCategory
 from django.contrib.auth.models import User
 
 
-class productserializer(serializers.ModelSerializer):  # create class to serializer model
-    creator = serializers.ReadOnlyField(source='creator.username')
+class productserializer(
+    serializers.ModelSerializer
+):  # create class to serializer model
+    created_by = serializers.ReadOnlyField(source="created_by.username")
+    categories = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=ProductCategory.objects.all()
+    )
 
     class Meta:
         model = Product
-        fields = ('id', 'title', 'genre', 'year', 'creator')
+        fields = (
+            "id",
+            "short_name",
+            "long_name",
+            "sku",
+            "price",
+            "stock",
+            "thumbnail",
+            "physical_width",
+            "physical_lenght",
+            "physical_height",
+            "categories",
+            "created_by",
+            "created_at",
+            "updated_at",
+        )
 
 
-class UserSerializer(serializers.ModelSerializer):  # create class to serializer user model
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
+class UserSerializer(
+    serializers.ModelSerializer
+):  # create class to serializer user model
+    products = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Product.objects.all()
+    )
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'products')
+        fields = ("id", "username", "products")
