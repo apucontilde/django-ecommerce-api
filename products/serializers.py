@@ -3,12 +3,12 @@ from .models import Product, ProductCategory
 from django.contrib.auth.models import User
 
 
-class productserializer(
+class ProductSerializer(
     serializers.ModelSerializer
 ):  # create class to serializer model
     created_by = serializers.ReadOnlyField(source="created_by.username")
-    categories = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=ProductCategory.objects.all()
+    categories = serializers.SlugRelatedField(
+        many=True, queryset=ProductCategory.objects.all(), slug_field="name"
     )
 
     class Meta:
