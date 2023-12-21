@@ -3,25 +3,25 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters import rest_framework as filters
 
 from api.pagination import CustomPagination
-from .models import Product
-from .serializers import ProductSerializer
-from .filters import ProductFilter
+from .models import Order
+from .serializers import OrderSerializer
+from .filters import OrderFilter
 
 
-class ListCreateProductAPIView(ListCreateAPIView):
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+class ListCreateOrderAPIView(ListCreateAPIView):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
     permission_classes = [IsAuthenticated]
     pagination_class = CustomPagination
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = ProductFilter
+    filterset_class = OrderFilter
 
     def perform_create(self, serializer):
         # Assign the user who created the product
         serializer.save(created_by=self.request.user)
 
 
-class RetrieveUpdateDestroyProductAPIView(RetrieveUpdateDestroyAPIView):
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+class RetrieveUpdateDestroyOrderAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
     permission_classes = [IsAuthenticated]

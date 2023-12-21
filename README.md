@@ -116,9 +116,7 @@ http http://127.0.0.1:8000/api/v1/products/?page=3&page_size=15 "Authorization: 
 The API supports filtering, you can filter by the attributes of a product like this
 
 ```
-http http://127.0.0.1:8000/api/v1/products/?title="AntMan" "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?year=2020 "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?year__gt=2019&year__lt=2022 "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?genre="Action" "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?creator__username="myUsername" "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/products/?short_name="Cup" "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/products/?price_gt=10 "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/products/?category="Clothing" "Authorization: Bearer {YOUR_TOKEN}"
 ```
