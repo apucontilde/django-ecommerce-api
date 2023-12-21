@@ -27,7 +27,7 @@ class Product(AuditedModel):
     physical_width = models.FloatField()
     physical_lenght = models.FloatField()
     physical_height = models.FloatField()
-    categories = models.ManyToManyField(ProductCategory, related_name="products")
+    categories = models.ManyToManyField(ProductCategory, related_name="product")
 
     class Meta:
         ordering = ["-id"]

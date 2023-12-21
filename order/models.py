@@ -1,11 +1,7 @@
 from django.db import models
 
 from api.models import AuditedModel, MoneyField
-from products.models import Product
-
-
-class Cart(AuditedModel):
-    products = models.ManyToManyField(Product)
+from product.models import Product
 
 
 class Order(AuditedModel):

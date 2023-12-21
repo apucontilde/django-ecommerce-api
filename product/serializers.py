@@ -34,10 +34,10 @@ class ProductSerializer(
 class UserSerializer(
     serializers.ModelSerializer
 ):  # create class to serializer user model
-    products = serializers.PrimaryKeyRelatedField(
+    product = serializers.PrimaryKeyRelatedField(
         many=True, queryset=Product.objects.all()
     )
 
     class Meta:
         model = User
-        fields = ("id", "username", "products")
+        fields = ("id", "username", "product")

@@ -1,5 +1,5 @@
 from django.urls import reverse
-from products.models import Product, ProductCategory
+from product.models import Product, ProductCategory
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 

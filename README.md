@@ -25,13 +25,13 @@ pip install -r requirements.txt
 
 ## Structure
 
-| Endpoint       | HTTP Method | CRUD Method | Result               |
-| -------------- | ----------- | ----------- | -------------------- |
-| `products`     | GET         | READ        | Get all products     |
-| `products/:id` | GET         | READ        | Get a single product |
-| `products`     | POST        | CREATE      | Create a new product |
-| `products/:id` | PUT         | UPDATE      | Update a product     |
-| `products/:id` | DELETE      | DELETE      | Delete a product     |
+| Endpoint      | HTTP Method | CRUD Method | Result               |
+| ------------- | ----------- | ----------- | -------------------- |
+| `product`     | GET         | READ        | Get all product      |
+| `product/:id` | GET         | READ        | Get a single product |
+| `product`     | POST        | CREATE      | Create a new product |
+| `product/:id` | PUT         | UPDATE      | Update a product     |
+| `product/:id` | DELETE      | DELETE      | Delete a product     |
 
 ## Usage
 
@@ -87,18 +87,18 @@ http http://127.0.0.1:8000/api/v1/auth/token/refresh/ refresh="eyJ0eXAiOiJKV1QiL
 ### Commands
 
 ```
-Get all products
-http http://127.0.0.1:8000/api/v1/products/ "Authorization: Bearer {YOUR_TOKEN}"
+Get all product
+http http://127.0.0.1:8000/api/v1/product/ "Authorization: Bearer {YOUR_TOKEN}"
 Get a single product
-http GET http://127.0.0.1:8000/api/v1/products/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}"
+http GET http://127.0.0.1:8000/api/v1/product/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}"
 Create a new product
-http POST http://127.0.0.1:8000/api/v1/products/ "Authorization: Bearer {YOUR_TOKEN}" title="Ant Man and The Wasp" genre="Action" year=2018
+http POST http://127.0.0.1:8000/api/v1/product/ "Authorization: Bearer {YOUR_TOKEN}" title="Ant Man and The Wasp" genre="Action" year=2018
 Full update a product
-http PUT http://127.0.0.1:8000/api/v1/products/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}" title="AntMan and The Wasp" genre="Action" year=2018
+http PUT http://127.0.0.1:8000/api/v1/product/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}" title="AntMan and The Wasp" genre="Action" year=2018
 Partial update a product
-http PATCH http://127.0.0.1:8000/api/v1/products/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}" title="AntMan and The Wasp"
+http PATCH http://127.0.0.1:8000/api/v1/product/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}" title="AntMan and The Wasp"
 Delete a product
-http DELETE http://127.0.0.1:8000/api/v1/products/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}"
+http DELETE http://127.0.0.1:8000/api/v1/product/{product_id}/ "Authorization: Bearer {YOUR_TOKEN}"
 ```
 
 ### Pagination
@@ -106,9 +106,9 @@ http DELETE http://127.0.0.1:8000/api/v1/products/{product_id}/ "Authorization: 
 The API supports pagination, by default responses have a page_size=10 but if you want change that you can pass through params page_size={your_page_size_number}
 
 ```
-http http://127.0.0.1:8000/api/v1/products/?page=1 "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?page=3 "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?page=3&page_size=15 "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?page=1 "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?page=3 "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?page=3&page_size=15 "Authorization: Bearer {YOUR_TOKEN}"
 ```
 
 ### Filters
@@ -116,7 +116,7 @@ http http://127.0.0.1:8000/api/v1/products/?page=3&page_size=15 "Authorization: 
 The API supports filtering, you can filter by the attributes of a product like this
 
 ```
-http http://127.0.0.1:8000/api/v1/products/?short_name="Cup" "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?price_gt=10 "Authorization: Bearer {YOUR_TOKEN}"
-http http://127.0.0.1:8000/api/v1/products/?category="Clothing" "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?short_name="Cup" "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?price_gt=10 "Authorization: Bearer {YOUR_TOKEN}"
+http http://127.0.0.1:8000/api/v1/product/?category="Clothing" "Authorization: Bearer {YOUR_TOKEN}"
 ```

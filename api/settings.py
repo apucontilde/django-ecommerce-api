@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "authentication",
-    "products",
-    "orders",
+    "product",
+    "order",
+    "cart",
 ]
 
 SITE_ID = 1
