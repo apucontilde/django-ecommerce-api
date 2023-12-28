@@ -1,9 +1,6 @@
 from typing import Any
 from django.db import models
 
-from typing import Any
-from django.db import models
-
 
 class AuditedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)

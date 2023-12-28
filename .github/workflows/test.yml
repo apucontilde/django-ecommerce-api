@@ -1,0 +1,34 @@
+name: cicd
+
+on: [push]
+
+env:
+  WEB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/web
+  NGINX_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/nginx
+
+
+jobs:
+
+  test:
+    name: Run Django Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Set environment variables
+        run: |
+          echo "WEB_IMAGE=$(echo ${{env.WEB_IMAGE}} )" >> $GITHUB_ENV
+          echo "NGINX_IMAGE=$(echo ${{env.NGINX_IMAGE}} )" >> $GITHUB_ENV
+      - name: Build and Test Image
+        run: |
+          echo DEBUG=0 >> .env
+          echo SQL_ENGINE=django.db.backends.sqlite3 >> .env
+          echo DATABASE=sqlite >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo SQL_USER=user >> .env
+          echo SQL_PASSWORD=password >> .env
+          echo SQL_HOST=localhost >> .env
+          echo SQL_PORT=5432 >> .env
+          echo SQL_NAME=db.sqlite3 >> .env
+          docker-compose -f docker-compose.ci.yml build
+          docker-compose -f docker-compose.ci.yml run web python manage.py test
